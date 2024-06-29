@@ -11,7 +11,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="p-4 text-textcolor font-serif">
+          <div className="fixed h-4 w-full bg-white z-50 top-0 left-0 "></div>
+          {children}</div>
+          <div className="fixed h-4 w-full bg-white z-50 bottom-0 left-0 "></div>
+          <div className="fixed h-full w-4 bg-white z-50 top-0 left-0 "></div>
+          <div className="fixed h-full w-4 bg-white z-50 top-0 right-0 "></div>
+      </body>
     </html>
   );
 }
