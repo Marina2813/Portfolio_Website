@@ -1,7 +1,11 @@
-import Image from "next/image";
+"use client";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
-  return(
-    <div className="bg-black"></div>
-  )
+  const router = useRouter();
+  return (
+    <button type="button" onClick={() => router.push('/work')}>
+      work
+    </button>
+  );
 }
