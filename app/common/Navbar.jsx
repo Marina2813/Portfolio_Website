@@ -50,6 +50,8 @@ const Navbar = () => {
         return "bg-redaccent brighteness-0";
       case "/about":
         return "bg-greenaccent";
+      case "/contact":
+        return "bg-yellowaccent";
       default:
         return "bg-white";
     }

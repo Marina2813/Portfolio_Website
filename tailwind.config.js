@@ -12,6 +12,8 @@ theme: {
         redaccent : "#f67796",
         greenaccent : "#A1E4B3",
         greenbg:"#F7F8F9",
+        yellowbg:"#fdfbf9",
+        yellowaccent:"#FBB554",
         redbg:"#FFF7F7",
         textcolor:"#302861"
 
