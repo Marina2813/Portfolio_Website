@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { doc, collection,addDoc } from 'firebase/firestore';
+import { db } from '@/utils/firebaseconfig';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -153,8 +155,20 @@ const ContactForm = () => {
         y: 50,
         duration: 1.5,
         ease: 'power3.in',
-        onComplete: () => {
-          alert('Form submitted successfully!');
+        onComplete: async () => {
+          try {
+            const userDocRef = doc(db, 'users', 'rohitbabugeorge');
+            
+            const messagesCollectionRef = collection(userDocRef, 'messages');
+            
+            // Adding the formData as a new document in the 'messages' subcollection
+            const messageDocRef = await addDoc(messagesCollectionRef, formData);
+            
+            alert('Form submitted successfully!');
+          } catch (error) {
+            console.error("Error writing document: ", error);
+            alert('Error submitting form. Please try again.');
+          }
           gsap.to(formRef.current, { opacity: 1, y: 0, duration: 1.5, ease: 'power3.out' });
           setFormData({ name: '', email: '', message: '' });
           setFormErrors({});
@@ -166,16 +180,19 @@ const ContactForm = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    validateField(name, value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
+  
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-yellow-100">
-      <div className="flex flex-col md:flex-row w-full max-w-4xl bg-white rounded-lg overflow-hidden shadow-lg">
-        <div className="md:w-1/2 p-8 flex flex-col justify-center items-start bg-yellow-200" ref={leftDivRef}>
+    <div className="flex items-center justify-center min-h-screen ">
+      <div className="flex flex-col md:flex-row w-full max-w-4xl  rounded-lg overflow-hidden ">
+        <div className="md:w-1/2 p-8 flex flex-col justify-center items-start " ref={leftDivRef}>
           <h2 className="text-2xl font-bold mb-4 text-gray-800">Get in Touch</h2>
           <p className="mb-4 text-gray-700">Feel free to reach out to me via email or connect with me on social media.</p>
           <ul>

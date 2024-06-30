@@ -113,9 +113,11 @@ const LoginForm = () => {
         );
         login();
         const userEmail = userCredential.user.email;
-        if (userEmail === "hello1@gmail.com") {
+        console.log(userEmail)
+        if (userEmail === "test@gmail.com") {
           router.push("/hello1"); // Use router.push for navigation in Next.js
         } else {
+            localStorage.setItem("userEmail", userEmail);
           router.push("/admin");
         }
       } catch (error) {
