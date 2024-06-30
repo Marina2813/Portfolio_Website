@@ -6,19 +6,28 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   // Initialize state based on localStorage
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const isAuth = localStorage.getItem('isAuthenticated');
-    return isAuth === 'true'; 
+    // Check if window is defined to safely access localStorage
+    if (typeof window !== "undefined") {
+      const isAuth = localStorage.getItem('isAuthenticated');
+      return isAuth === 'true';
+    }
+    return false; // Default to false if window is not defined
   });
 
   const login = () => {
-    setIsAuthenticated(true);
-    localStorage.setItem('isAuthenticated', 'true'); 
+    if (typeof window !== "undefined") {
+      setIsAuthenticated(true);
+      localStorage.setItem('isAuthenticated', 'true');
+    }
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.setItem('isAuthenticated', 'false'); 
+    if (typeof window !== "undefined") {
+      setIsAuthenticated(false);
+      localStorage.setItem('isAuthenticated', 'false');
+    }
   };
+
 
   
   useEffect(() => {

@@ -2,8 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Navbar from "../common/Navbar";
-import Image from "next/image";
-import Landing from "../common/landing";
+import Landing from "../common/Landing";
 import Projects from "./components/projects";
 import GetInTouch from "./components/GetInTouch";
 
