@@ -44,7 +44,7 @@ const Landing = ({heading,description,accentcolor}) => {
     );
 
     gsap.to(animatedDivRef.current, {
-      width: "9%",
+      width: "10%",
       duration: 1,
       ease: "power2.out",
     });
