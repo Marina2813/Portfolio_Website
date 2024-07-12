@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-const AnimatedButton = () => {
+const AnimatedButton = ({ text = "Get in touch" }) => {
   const buttonRef = useRef(null);
   const backgroundRef = useRef(null);
 
@@ -29,7 +29,7 @@ const AnimatedButton = () => {
         ref={buttonRef}
         className="relative z-10 py-2 px-6 border-2 border-redaccent text-redaccent font-semibold rounded hover:bg-redaccent hover:text-white transition-colors duration-300"
       >
-        Get in Touch
+        {text}
       </button>
     </div>
   );

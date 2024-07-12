@@ -55,7 +55,7 @@ const Navbar = () => {
       case "/admin":
         return "bg-yellowaccent";
       default:
-        return "bg-white";
+        return "bg-redaccent";
     }
   };
 

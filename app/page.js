@@ -1,25 +1,38 @@
 "use client";
-import {useRouter} from "next/navigation";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 import Navbar from "./common/Navbar";
+import Landing from "./common/Landing";
+import MainLanding from "./homepage/mainLanding";
+import LetsWork from "./homepage/LetsWork";
+import Certificate from "./homepage/Certificate";
+import Skills from "./homepage/skills";
 
-export default function Home() {
-  const router = useRouter();
+
+const Page = () => {
+  const overlayRef = useRef(null);
+
+  useEffect(() => {
+    gsap.to(overlayRef.current, {
+      y: "120%",
+      duration: 1,
+      ease: "power3.inOut",
+    });
+  }, []);
+
   return (
-    
-    <div className="bg-primarybg h-screen w-screen flex justify-center">
-      <Navbar/>
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-        <div className="text-left md:w-1/2 pl-16">
-          <h1 className="text-textcolor text-4xl md:text-6xl font-normal">
-            Hi, my name is <br />
-            <span className="block font-extrabold mt-4">Marina Rose</span>
-          </h1>
-          <p className="text-black text-sm md:text-base mt-2">
-            Crafting code, cooking recipes, and smashing <br/>
-            shuttlecocks—B.Tech CSE student at MITS! 🏸👩‍💻🍳
-          </p>
-        </div>
-    </div>
+    <div className="relative">
+  <div ref={overlayRef} className="fixed inset-4 bg-redaccent z-50"></div>
+      <Navbar />
+
+      <div className=" bg-redbg h-full px-[100px] pt-40">
+      <MainLanding/>
+      <LetsWork/>
+      <Certificate/>
+      <Skills/>
+      </div>
     </div>
   );
-}
+};
+
+export default Page;
