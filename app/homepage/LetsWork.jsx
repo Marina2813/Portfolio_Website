@@ -88,7 +88,7 @@ const LetsWork = () => {
       <div className="h-[80vh]">
       <div id="HEADINGS" ref={headingRef}>
         <h1 className=" text-5xl flex items-end">
-          <div className="font-bold">Let's Work Together</div>
+          <div className="font-bold">Let&apos;s Work Together</div>
           <div
             className={`h-4 w-4 mb-2 ml-2 bg-redaccent rounded-full`}
             id="oval"></div>

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,7 +29,7 @@ const Gallery = () => {
         trigger: galleryRef.current,
         start: 'top 80%',
         end: 'bottom 20%',
-        toggleActions: 'play none none none',
+        toggleActions: 'play reset play reset',
       },
     });
 
@@ -59,7 +60,7 @@ const Gallery = () => {
         {photos.map((photo, index) => (
           <div key={index} className="relative overflow-hidden rounded-lg shadow-lg">
             <div className="overlay absolute inset-0 z-10"></div>
-            <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+            <Image src={photo.src} alt={photo.alt} width={100} height={100} className="w-full h-full object-cover" />
           </div>
         ))}
       </div>
